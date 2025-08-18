@@ -1,0 +1,16 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  max-height: 40px;
+  padding: 32px, 40px, 0;
+}
+
+.header__content {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.header-left {
+  gap: 24px;
+}
