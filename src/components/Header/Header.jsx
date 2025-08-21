@@ -6,19 +6,19 @@ function Header() {
   const currentDate = new Date().toLocaleString("default", {
     month: "long",
     day: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
   });
 
   return (
     <header className="header">
-      <div className="header__content header-left">
-        <img src={logo} alt="" />
-        <p>{currentDate} | City, Country</p>
+      <img className="header__logo" src={logo} alt="What to Wear Logo" />
+      <p className="header__geo-data">{currentDate} | LOCATION</p>
+      <button className="header__clothes-btn">+ Add Clothes</button>
+      <div className="header__user-container">
+        <p className="header__username">Username Nameduser</p>
+        <img src={avatar} alt="User Avatar" className="header__user-avatar" />
       </div>
-      <div className="header__content header-right">
-        <button>+ Add Clothes</button>
-        <p>Username Nameduser</p>
-      </div>
-      <img src={avatar} alt="" style={{ width: 40, height: 40 }} />
     </header>
   );
 }

@@ -7,13 +7,15 @@ import Footer from "../Footer/Footer.jsx";
 
 function App() {
   return (
-    <>
-      <Header />
-      <Main />
-      <Footer />
-      {/* <ModalWithForm /> */}
-      {/* <ItemModal />  */}
-    </>
+    <div className="page">
+      <div className="page__content">
+        <Header />
+        <Main />
+        <Footer />
+        {/* <ModalWithForm /> */}
+        {/* <ItemModal />  */}
+      </div>
+    </div>
   );
 }
 
