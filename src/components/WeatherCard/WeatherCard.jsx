@@ -3,9 +3,10 @@ import cloudyDay from "../../assets/images/weatherCards/cloudy-day.svg";
 
 function WeatherCard() {
   return (
-    <div className="weather-card">
-      <p>Temperature: 20°C</p>
-    </div>
+    <section className="weather-card">
+      <p className="weather-card__temp">75&deg;F</p>
+      <img className="weather-card__image" src={cloudyDay} alt="" />
+    </section>
   );
 }
 
