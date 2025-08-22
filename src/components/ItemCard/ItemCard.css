@@ -1,0 +1,23 @@
+.item-cards__text {
+  font-family: "Cabinet Grotesk", sans-serif;
+}
+
+.item-cards__list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.item-cards__name {
+  font-family: "Cabinet Grotesk", sans-serif;
+
+  margin: 0;
+  position: absolute;
+}
+
+.item-cards__image {
+  object-fit: cover;
+  width: 100%;
+  display: flex;
+}
