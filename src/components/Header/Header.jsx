@@ -2,7 +2,7 @@ import logo from "../../assets/images/logo.svg";
 import avatar from "../../assets/images/avatar.svg";
 import "./Header.css";
 
-function Header() {
+function Header({ handleAddClick }) {
   const currentDate = new Date().toLocaleString("default", {
     month: "long",
     day: "numeric",
@@ -14,7 +14,13 @@ function Header() {
     <header className="header">
       <img className="header__logo" src={logo} alt="What to Wear Logo" />
       <p className="header__geo-data">{currentDate} | LOCATION</p>
-      <button className="header__clothes-btn">+ Add Clothes</button>
+      <button
+        type="button"
+        onClick={handleAddClick}
+        className="header__clothes-btn"
+      >
+        + Add Clothes
+      </button>
       <div className="header__user-container">
         <p className="header__username">Username Nameduser</p>
         <img src={avatar} alt="User Avatar" className="header__user-avatar" />
