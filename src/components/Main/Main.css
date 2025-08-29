@@ -15,4 +15,5 @@
   padding: 0;
   list-style-type: none;
   gap: 21px;
+  justify-content: center;
 }
