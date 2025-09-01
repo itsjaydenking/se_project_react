@@ -6,6 +6,8 @@
   font-family: "Cabinet Grotesk", sans-serif;
   margin: 0;
   padding-bottom: 34px;
+  font-size: 20px;
+  font-weight: bold;
 }
 
 .cards__list {
