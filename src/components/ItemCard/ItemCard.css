@@ -28,3 +28,20 @@
   border-radius: 10px;
   cursor: pointer;
 }
+
+@media (max-width: 480px) {
+  .card {
+    width: 100vw;
+    max-width: 160px;
+  }
+
+  .card__name {
+    font-size: 16px;
+    top: 7px;
+    padding: 2px 12px;
+  }
+
+  .card__image {
+    max-height: 160px;
+  }
+}

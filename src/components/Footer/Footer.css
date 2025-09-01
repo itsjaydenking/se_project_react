@@ -11,3 +11,11 @@
 .footer__text {
   margin: 0;
 }
+
+@media (max-width: 480px) {
+  .footer {
+    align-items: flex-start;
+    padding-top: 32px;
+    padding-bottom: 20px;
+  }
+}

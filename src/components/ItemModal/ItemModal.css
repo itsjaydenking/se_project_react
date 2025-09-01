@@ -53,3 +53,13 @@
   border-radius: 0 0 8px 8px;
   box-sizing: border-box;
 }
+
+@media (max-width: 480px) {
+  .modal__footer {
+    padding: 20px;
+  }
+
+  .modal__content_type_image {
+    padding: 0;
+  }
+}

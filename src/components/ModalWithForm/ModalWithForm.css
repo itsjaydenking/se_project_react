@@ -99,3 +99,19 @@
   background-color: rgba(0, 0, 0, 0.3);
   cursor: not-allowed;
 }
+
+@media (max-width: 480px) {
+  .modal__content {
+    border-radius: 12px;
+    padding: 32px 16px;
+  }
+
+  .modal__title {
+    padding-bottom: 37px;
+  }
+
+  .modal__submit {
+    width: 100%;
+    padding: 12px 0;
+  }
+}

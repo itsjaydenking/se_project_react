@@ -19,3 +19,21 @@
   gap: 21px;
   justify-content: center;
 }
+
+@media (max-width: 480px) {
+  .cards {
+    padding-top: 32px;
+  }
+  .cards__title {
+    font-size: 16px;
+    line-height: 20px;
+    padding-bottom: 16px;
+  }
+  .cards__list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 15px;
+    row-gap: 16px;
+    justify-items: center;
+  }
+}

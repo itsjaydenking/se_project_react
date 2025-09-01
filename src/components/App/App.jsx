@@ -8,7 +8,6 @@ import Footer from "../Footer/Footer.jsx";
 import ModalWithForm from "../ModalWithForm/ModalWithForm.jsx";
 import ItemModal from "../ItemModal/ItemModal.jsx";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi.js";
-import "../Media/Media.css";
 
 function App() {
   const [weatherData, setWeatherData] = useState({

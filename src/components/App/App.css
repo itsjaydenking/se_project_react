@@ -53,3 +53,9 @@
 .modal__label_type_radio.selected {
   opacity: 1;
 }
+
+@media (max-width: 480px) {
+  .page__content {
+    padding: 0 16px;
+  }
+}
