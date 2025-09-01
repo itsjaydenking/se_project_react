@@ -39,3 +39,17 @@
   margin: 0;
   padding-bottom: 12px;
 }
+
+.modal__label_type_radio {
+  opacity: 0.5;
+  transition: opacity 0.2s;
+  cursor: pointer;
+}
+
+.modal__input_type_radio {
+  cursor: pointer;
+}
+
+.modal__label_type_radio.selected {
+  opacity: 1;
+}

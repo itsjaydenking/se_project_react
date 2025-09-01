@@ -6,15 +6,15 @@ function Header({ handleAddClick, weatherData }) {
   const currentDate = new Date().toLocaleString("default", {
     month: "long",
     day: "numeric",
-    hour: "2-digit",
-    minute: "2-digit",
+    // hour: "2-digit",
+    // minute: "2-digit",
   });
 
   return (
     <header className="header">
       <img className="header__logo" src={logo} alt="What to Wear Logo" />
       <p className="header__geo-data">
-        {currentDate} | {weatherData.city}
+        {currentDate}, {weatherData.city}
       </p>
       <button
         type="button"

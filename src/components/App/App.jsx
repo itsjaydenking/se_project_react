@@ -8,6 +8,7 @@ import Footer from "../Footer/Footer.jsx";
 import ModalWithForm from "../ModalWithForm/ModalWithForm.jsx";
 import ItemModal from "../ItemModal/ItemModal.jsx";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi.js";
+import "../Media/Media.css";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -17,6 +18,7 @@ function App() {
   });
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
+  const [selectedWeather, setSelectedWeather] = useState("");
 
   const handleCardClick = (card) => {
     setActiveModal("preview");
@@ -99,39 +101,28 @@ function App() {
           />
           <fieldset className="modal__radio-buttons">
             <legend className="modal__legend">Select the weather type:</legend>
-            <label
-              htmlFor="hot"
-              className="modal__label modal__label_type_radio"
-            >
-              <input
-                id="hot"
-                type="radio"
-                className="modal__radio-input modal__input_type_radio"
-              />{" "}
-              Hot
-            </label>
-            <label
-              htmlFor="warm"
-              className="modal__label modal__label_type_radio"
-            >
-              <input
-                id="warm"
-                type="radio"
-                className="modal__radio-input modal__input_type_radio"
-              />{" "}
-              Warm
-            </label>
-            <label
-              htmlFor="cold"
-              className="modal__label modal__label_type_radio"
-            >
-              <input
-                id="cold"
-                type="radio"
-                className="modal__radio-input modal__input_type_radio"
-              />{" "}
-              Cold
-            </label>
+            {["hot", "warm", "cold"].map((type) => (
+              <label
+                key={type}
+                htmlFor={type}
+                className={`modal__label modal__label_type_radio${
+                  selectedWeather === type ? " selected" : ""
+                }`}
+              >
+                <input
+                  id={type}
+                  type="radio"
+                  className="modal__radio-input modal__input_type_radio"
+                  name="weather"
+                  value={type}
+                  checked={selectedWeather === type}
+                  onChange={() =>
+                    setSelectedWeather(selectedWeather === type ? "" : type)
+                  }
+                />{" "}
+                {type.charAt(0).toUpperCase() + type.slice(1)}
+              </label>
+            ))}
           </fieldset>
         </ModalWithForm>
         <ItemModal
