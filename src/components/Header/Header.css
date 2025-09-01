@@ -11,11 +11,24 @@
 .header__geo-data {
   margin: 0;
   font-family: "Cabinet Grotesk", sans-serif;
+  font-size: 20px;
+  line-height: 24px;
+  font-weight: bold;
 }
 
 .header__clothes-btn {
   margin: 0 20px 0 auto;
   font-family: "Cabinet Grotesk", sans-serif;
+  border: none;
+  font-size: 20px;
+  line-height: 24px;
+  font-weight: bold;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.header__clothes-btn:hover {
+  text-decoration: underline;
 }
 
 .header__user-container {
@@ -27,4 +40,7 @@
 .header__username {
   margin: 0;
   font-family: "Cabinet Grotesk", sans-serif;
+  font-size: 20px;
+  line-height: 24px;
+  font-weight: bold;
 }
