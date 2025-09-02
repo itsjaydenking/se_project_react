@@ -67,7 +67,12 @@ function App() {
   return (
     <div className="page">
       <div className="page__content">
-        <Header handleAddClick={handleAddClick} weatherData={weatherData} />
+        <Header
+          handleAddClick={handleAddClick}
+          weatherData={weatherData}
+          activeModal={activeModal}
+          closeActiveModal={closeActiveModal}
+        />
         <Main weatherData={weatherData} handleCardClick={handleCardClick} />
 
         <ModalWithForm

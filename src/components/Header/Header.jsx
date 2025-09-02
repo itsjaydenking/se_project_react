@@ -6,11 +6,17 @@ import closeIcon from "../../assets/images/close-icon.svg";
 import "./Header.css";
 
 /* TODO: Responsive Header */
-function Header({ handleAddClick, weatherData }) {
+function Header({ handleAddClick, weatherData, closeActiveModal }) {
   const [isMobileMenuOpened, setIsMobileMenuOpened] = useState(false);
 
   const toggleMobileMenu = () => {
-    setIsMobileMenuOpened((prev) => !prev);
+    setIsMobileMenuOpened((prev) => {
+      // If opening the menu, close all modals
+      if (!prev) {
+        closeActiveModal();
+      }
+      return !prev;
+    });
   };
 
   const currentDate = new Date().toLocaleString("default", {
@@ -20,13 +26,17 @@ function Header({ handleAddClick, weatherData }) {
 
   return (
     <header className="header">
-      <img className="header__logo" src={logo} alt="What to Wear Logo" />
-      <p className="header__geo-data">
-        {currentDate}, {weatherData.city}
-      </p>
+      <div className="header__content">
+        <img className="header__logo" src={logo} alt="What to Wear Logo" />
+        <p className="header__geo-data">
+          {currentDate}, {weatherData.city}
+        </p>
+      </div>
 
       <button
-        className="header__menu-btn"
+        className={`header__menu-btn${
+          isMobileMenuOpened ? " header__menu-btn_mobile-open" : ""
+        }`}
         type="button"
         onClick={toggleMobileMenu}
         aria-label={isMobileMenuOpened ? "Close menu" : "Open menu"}
@@ -49,8 +59,10 @@ function Header({ handleAddClick, weatherData }) {
         >
           + Add Clothes
         </button>
-        <p className="header__username">Username Nameduser</p>
-        <img src={avatar} alt="User Avatar" className="header__user-avatar" />
+        <div className="header__user-content">
+          <p className="header__username">Username Nameduser</p>
+          <img src={avatar} alt="User Avatar" className="header__user-avatar" />
+        </div>
       </nav>
     </header>
   );
