@@ -17,7 +17,15 @@ export const weatherOptions = [
   },
   {
     day: true,
-    condition: "rain" | "drizzle",
+    condition: "rain",
+    url: new URL(
+      "../assets/images/weatherCards/day/rainy-day.svg",
+      import.meta.url
+    ).href,
+  },
+  {
+    day: true,
+    condition: "drizzle",
     url: new URL(
       "../assets/images/weatherCards/day/rainy-day.svg",
       import.meta.url
@@ -66,7 +74,15 @@ export const weatherOptions = [
   },
   {
     day: false,
-    condition: "rain" | "drizzle",
+    condition: "drizzle",
+    url: new URL(
+      "../assets/images/weatherCards/night/rainy-night.svg",
+      import.meta.url
+    ).href,
+  },
+  {
+    day: false,
+    condition: "rain",
     url: new URL(
       "../assets/images/weatherCards/night/rainy-night.svg",
       import.meta.url
@@ -177,7 +193,7 @@ export const defaultClothingItems = [
   {
     _id: 11,
     name: "Shorts",
-    weather: "Hot",
+    weather: "hot",
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Shorts.png?etag=d728c496643f610de8d8fea92dd915ba",
   },
   {
