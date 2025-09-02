@@ -115,4 +115,25 @@
     width: 100%;
     padding: 12px 0;
   }
+
+  .modal_type_form {
+    align-items: flex-end;
+    padding: 0;
+  }
+
+  .modal__content_type_form {
+    border-radius: 16px 16px 0 0;
+    padding: 32px 16px;
+    margin: 0;
+    box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.2);
+    transform: translateY(100%);
+    opacity: 0;
+    transition: transform 2s cubic-bezier(0.4, 0, 0.2, 1), opacity 1.5s; /* Ease */
+  }
+
+  .modal_opened .modal__content_type_form {
+    transform: translateY(0);
+    opacity: 1;
+    transition: transform 2s cubic-bezier(0.4, 0, 0.2, 1), opacity 1.5s; /* Ease */
+  }
 }

@@ -5,18 +5,11 @@ import hamburgerIcon from "../../assets/images/hamburger.svg";
 import closeIcon from "../../assets/images/close-icon.svg";
 import "./Header.css";
 
-/* TODO: Responsive Header */
-function Header({ handleAddClick, weatherData, closeActiveModal }) {
+function Header({ handleAddClick, weatherData }) {
   const [isMobileMenuOpened, setIsMobileMenuOpened] = useState(false);
 
   const toggleMobileMenu = () => {
-    setIsMobileMenuOpened((prev) => {
-      // If opening the menu, close all modals
-      if (!prev) {
-        closeActiveModal();
-      }
-      return !prev;
-    });
+    setIsMobileMenuOpened((prev) => !prev);
   };
 
   const currentDate = new Date().toLocaleString("default", {
