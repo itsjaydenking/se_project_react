@@ -19,6 +19,8 @@ function App() {
   const [selectedCard, setSelectedCard] = useState({});
   const [selectedWeather, setSelectedWeather] = useState("");
 
+  const [clothingItems, setClothingItems] = useState(defaultClothingItems);
+
   const handleCardClick = (card) => {
     setActiveModal("preview");
     setSelectedCard(card);
@@ -30,6 +32,10 @@ function App() {
 
   const closeActiveModal = () => {
     setActiveModal("");
+  };
+
+  const handleAddGarment = (newGarment) => {
+    setClothingItems((prevItems) => [...prevItems, newGarment]);
   };
 
   useEffect(() => {
@@ -71,14 +77,15 @@ function App() {
         <Main
           weatherData={weatherData}
           handleCardClick={handleCardClick}
-          defaultClothingItems={defaultClothingItems}
+          defaultClothingItems={clothingItems}
         />
 
         <ModalWithForm
           buttonText="Add Garment"
+          isOpen={activeModal === "add-garment"}
           title="New Garment"
-          activeModal={activeModal}
           closeActiveModal={closeActiveModal}
+          onAddGarment={handleAddGarment}
         >
           <label className="modal__label" htmlFor="name">
             Name{" "}
