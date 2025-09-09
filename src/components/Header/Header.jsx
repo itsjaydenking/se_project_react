@@ -4,6 +4,8 @@ import avatar from "../../assets/images/avatar.svg";
 import hamburgerIcon from "../../assets/images/hamburger.svg";
 import closeIcon from "../../assets/images/close-icon.svg";
 import "./Header.css";
+import "../ToggleSwitch/ToggleSwitch";
+import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 
 function Header({ handleAddClick, weatherData }) {
   const [isMobileMenuOpened, setIsMobileMenuOpened] = useState(false);
@@ -45,6 +47,7 @@ function Header({ handleAddClick, weatherData }) {
           isMobileMenuOpened ? " header__user-container_mobile-open" : ""
         }`}
       >
+        <ToggleSwitch />
         <button
           type="button"
           onClick={handleAddClick}
