@@ -18,8 +18,8 @@ export const filterWeatherData = (data) => {
     lon: data.coord.lon,
   };
   result.temp = {
-    F: data.main.temp,
-    C: ((data.main.temp - 32) * 5) / 9,
+    F: Math.round(data.main.temp),
+    C: Math.round(((data.main.temp - 32) * 5) / 9),
   };
   result.type = getWeatherType(data.main.temp);
   result.condition = data.weather[0].main.toLowerCase();

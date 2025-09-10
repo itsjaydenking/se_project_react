@@ -1,7 +1,10 @@
 .toggle-switch {
   width: 56px;
   height: 28px;
+  min-width: 56px;
+  min-height: 28px;
   border: 2px solid #7e7e7e;
+  background-color: #fff;
   border-radius: 16px;
   cursor: pointer;
   overflow: hidden;
@@ -27,24 +30,18 @@
   transition: all 0.5s ease;
 }
 
-.toggle-switch__slider:hover {
+.toggle-switch:hover .toggle-switch__slider {
   transform: translateX(2px);
-}
-
-.toggle-switch__checkbox:checked + .toggle-switch__slider:hover {
-  transform: translateX(-2px);
+  width: 30px;
 }
 
 .toggle-switch__checkbox:checked + .toggle-switch__slider {
   left: 28px;
 }
 
-.toggle-switch__checkbox:checked ~ .toggle-switch__text_C {
-  color: #fff;
-}
-
-.toggle-switch__checkbox:not(:checked) ~ .toggle-switch__text_F {
-  color: #fff;
+.toggle-switch:hover .toggle-switch__checkbox:checked + .toggle-switch__slider {
+  transform: translateX(-4px);
+  width: 30px;
 }
 
 .toggle-switch__text {
@@ -52,7 +49,7 @@
   font-size: 16px;
   font-family: "Cabinet Grotesk", sans-serif;
   font-weight: bold;
-  top: 6px;
+  top: 5px;
   color: #000;
   transition: all 0.7s ease;
 }
@@ -63,4 +60,8 @@
 
 .toggle-switch__text_C {
   right: 8px;
+}
+
+.toggle-switch__text_color_white {
+  color: #fff;
 }
