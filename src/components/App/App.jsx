@@ -5,11 +5,10 @@ import { defaultClothingItems, API_KEY } from "../../utils/constants.js";
 import Header from "../Header/Header.jsx";
 import Main from "../Main/Main.jsx";
 import Footer from "../Footer/Footer.jsx";
-import ModalWithForm from "../ModalWithForm/ModalWithForm.jsx";
+import AddItemModal from "../AddItemModal/AddItemModal.jsx";
 import ItemModal from "../ItemModal/ItemModal.jsx";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi.js";
 import CurrentTemperatureUnitContext from "../../context/CurrentTemperatureUnitContext.jsx";
-import AddItemModal from "../AddItemModal/AddItemModal.jsx";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -20,8 +19,6 @@ function App() {
     isDayTime: true,
     coordinates: { lat: 41.9038, lon: 12.452 },
   });
-
-  console.log(weatherData);
 
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
@@ -46,9 +43,23 @@ function App() {
     setActiveModal("");
   };
 
+  // TODO: replace with backend call
+  // add _id to new garment
+  // sort clothing items alphabetically by name
   const handleAddGarment = (evt, newGarment) => {
     evt.preventDefault();
-    setClothingItems((prevItems) => [...prevItems, newGarment]);
+    //call the fetch function
+    //.then()... all the stuff
+    //The ID will be included in the response from the backend
+
+    const garmentWithId = {
+      ...newGarment,
+      _id: Date.now() + Math.random(),
+    };
+    setClothingItems((prevItems) =>
+      [...prevItems, garmentWithId].sort((a, b) => a.name.localeCompare(b.name))
+    );
+    //.catch()
   };
 
   useEffect(() => {
@@ -93,7 +104,7 @@ function App() {
           <Main
             weatherData={weatherData}
             handleCardClick={handleCardClick}
-            defaultClothingItems={clothingItems}
+            clothingItems={clothingItems}
           />
           <AddItemModal
             isOpen={activeModal === "add-garment"}
