@@ -46,7 +46,8 @@ function App() {
     setActiveModal("");
   };
 
-  const handleAddGarment = (newGarment) => {
+  const handleAddGarment = (evt, newGarment) => {
+    evt.preventDefault();
     setClothingItems((prevItems) => [...prevItems, newGarment]);
   };
 
