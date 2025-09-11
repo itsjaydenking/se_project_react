@@ -5,7 +5,7 @@ import { defaultClothingItems, API_KEY } from "../../utils/constants.js";
 import Header from "../Header/Header.jsx";
 import Main from "../Main/Main.jsx";
 import Footer from "../Footer/Footer.jsx";
-import ModalWithForm from "../ModalWithForm/ModalWithForm.jsx";
+import AddItemModal from "../AddItemModal/AddItemModal.jsx";
 import ItemModal from "../ItemModal/ItemModal.jsx";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi.js";
 import CurrentTemperatureUnitContext from "../../context/CurrentTemperatureUnitContext.jsx";
@@ -19,8 +19,6 @@ function App() {
     isDayTime: true,
     coordinates: { lat: 41.9038, lon: 12.452 },
   });
-
-  console.log(weatherData);
 
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
@@ -45,8 +43,23 @@ function App() {
     setActiveModal("");
   };
 
-  const handleAddGarment = (newGarment) => {
-    setClothingItems((prevItems) => [...prevItems, newGarment]);
+  // TODO: replace with backend call
+  // add _id to new garment
+  // sort clothing items alphabetically by name
+  const handleAddGarment = (evt, newGarment) => {
+    evt.preventDefault();
+    //call the fetch function
+    //.then()... all the stuff
+    //The ID will be included in the response from the backend
+
+    const garmentWithId = {
+      ...newGarment,
+      _id: Date.now() + Math.random(),
+    };
+    setClothingItems((prevItems) =>
+      [...prevItems, garmentWithId].sort((a, b) => a.name.localeCompare(b.name))
+    );
+    //.catch()
   };
 
   useEffect(() => {
@@ -91,66 +104,15 @@ function App() {
           <Main
             weatherData={weatherData}
             handleCardClick={handleCardClick}
-            defaultClothingItems={clothingItems}
+            clothingItems={clothingItems}
           />
-
-          <ModalWithForm
-            buttonText="Add Garment"
+          <AddItemModal
             isOpen={activeModal === "add-garment"}
-            title="New Garment"
-            closeActiveModal={closeActiveModal}
-            onAddGarment={handleAddGarment}
-          >
-            <label className="modal__label" htmlFor="name">
-              Name{" "}
-            </label>
-            <input
-              className="modal__input"
-              type="text"
-              id="name"
-              name="name"
-              placeholder="Enter garment name"
-              required
-            />
-            <label className="modal__label" htmlFor="imageUrl">
-              Image{" "}
-            </label>
-            <input
-              className="modal__input"
-              type="url"
-              id="imageUrl"
-              name="imageUrl"
-              placeholder="Enter image URL"
-              required
-            />
-            <fieldset className="modal__radio-buttons">
-              <legend className="modal__legend">
-                Select the weather type:
-              </legend>
-              {["hot", "warm", "cold"].map((type) => (
-                <label
-                  key={type}
-                  htmlFor={type}
-                  className={`modal__label modal__label_type_radio${
-                    selectedWeather === type ? " selected" : ""
-                  }`}
-                >
-                  <input
-                    id={type}
-                    type="radio"
-                    className="modal__radio-input modal__input_type_radio"
-                    name="weather"
-                    value={type}
-                    checked={selectedWeather === type}
-                    onChange={() =>
-                      setSelectedWeather(selectedWeather === type ? "" : type)
-                    }
-                  />{" "}
-                  {type.charAt(0).toUpperCase() + type.slice(1)}
-                </label>
-              ))}
-            </fieldset>
-          </ModalWithForm>
+            onAddItem={handleAddGarment}
+            onCloseModal={closeActiveModal}
+            selectedWeather={selectedWeather}
+            setSelectedWeather={setSelectedWeather}
+          />
           <ItemModal
             activeModal={activeModal}
             card={selectedCard}
