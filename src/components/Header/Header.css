@@ -131,11 +131,16 @@
     z-index: 1;
     border-radius: 12px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
-    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-8px);
+    transition: opacity 0.25s ease, transform 0.25s ease;
   }
 
   .header__user-container_mobile-open {
-    visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
   }
 
   .header__user-content {
@@ -144,7 +149,7 @@
   }
   .header__clothes-btn {
     order: 2;
-    padding-bottom: 60px;
+    padding-bottom: 12px;
   }
 
   .header__user-avatar {
