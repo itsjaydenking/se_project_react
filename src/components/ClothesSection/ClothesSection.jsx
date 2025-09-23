@@ -18,7 +18,7 @@ function ClothesSection({
       </div>
       <ul className="clothes-section__list">
         {clothingItems
-          .slice() // avoid mutating original
+          .slice()
           .sort((a, b) => a.name.localeCompare(b.name))
           .map((item) => (
             <ItemCard
