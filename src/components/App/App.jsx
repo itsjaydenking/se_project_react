@@ -8,6 +8,9 @@ import Main from "../Main/Main.jsx";
 import Footer from "../Footer/Footer.jsx";
 import AddItemModal from "../AddItemModal/AddItemModal.jsx";
 import ItemModal from "../ItemModal/ItemModal.jsx";
+import Profile from "../Profile/Profile.jsx";
+import DeleteConfirmationModal from "../DeleteConfirmationModal/DeleteConfirmationModal.jsx";
+
 import { getWeather, filterWeatherData } from "../../utils/weatherApi.js";
 import CurrentTemperatureUnitContext from "../../context/CurrentTemperatureUnitContext.jsx";
 
@@ -26,6 +29,7 @@ function App() {
   const [selectedWeather, setSelectedWeather] = useState("");
   const [clothingItems, setClothingItems] = useState(defaultClothingItems);
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
+  const [cardToDelete, setCardToDelete] = useState(null);
 
   const handleToggleSwitchChange = () => {
     setCurrentTemperatureUnit(currentTemperatureUnit === "F" ? "C" : "F");
@@ -40,8 +44,22 @@ function App() {
     setActiveModal("add-garment");
   };
 
+  const openConfirmationModal = (card) => {
+    setCardToDelete(card);
+    setActiveModal("confirm-delete");
+  };
+
+  const handleCardDelete = () => {
+    setClothingItems((prev) =>
+      prev.filter((item) => item._id !== cardToDelete._id)
+    );
+    setCardToDelete(null);
+    setActiveModal("");
+  };
+
   const closeActiveModal = () => {
     setActiveModal("");
+    setCardToDelete(null);
   };
 
   // TODO: replace with backend call
@@ -110,10 +128,20 @@ function App() {
                   weatherData={weatherData}
                   handleCardClick={handleCardClick}
                   clothingItems={clothingItems}
+                  handleAddClick={handleAddClick}
                 />
               }
             />
-            <Route path="/profile" element={<p>PROFILE</p>} />
+            <Route
+              path="/profile"
+              element={
+                <Profile
+                  handleCardClick={handleCardClick}
+                  clothingItems={clothingItems}
+                  handleAddClick={handleAddClick}
+                />
+              }
+            />
           </Routes>
           <Footer />
           <AddItemModal
@@ -127,6 +155,13 @@ function App() {
             activeModal={activeModal}
             card={selectedCard}
             closeActiveModal={closeActiveModal}
+            onOpenDelete={openConfirmationModal}
+          />
+          <DeleteConfirmationModal
+            isOpen={activeModal === "confirm-delete"}
+            card={cardToDelete}
+            onCancel={closeActiveModal}
+            onConfirm={handleCardDelete}
           />
         </div>
       </div>
