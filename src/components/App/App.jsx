@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Routes, Route } from "react-router-dom";
 
 import "./App.css";
 import { defaultClothingItems, API_KEY } from "../../utils/constants.js";
@@ -101,11 +102,20 @@ function App() {
       <div className="page">
         <div className="page__content">
           <Header handleAddClick={handleAddClick} weatherData={weatherData} />
-          <Main
-            weatherData={weatherData}
-            handleCardClick={handleCardClick}
-            clothingItems={clothingItems}
-          />
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <Main
+                  weatherData={weatherData}
+                  handleCardClick={handleCardClick}
+                  clothingItems={clothingItems}
+                />
+              }
+            />
+            <Route path="/profile" element={<p>PROFILE</p>} />
+          </Routes>
+          <Footer />
           <AddItemModal
             isOpen={activeModal === "add-garment"}
             onAddItem={handleAddGarment}
@@ -118,7 +128,6 @@ function App() {
             card={selectedCard}
             closeActiveModal={closeActiveModal}
           />
-          <Footer />
         </div>
       </div>
     </CurrentTemperatureUnitContext.Provider>
