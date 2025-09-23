@@ -1,0 +1,46 @@
+.profile {
+  display: flex;
+  align-items: flex-start;
+  gap: 48px;
+  padding-top: 40px;
+  box-sizing: border-box;
+}
+
+.profile__sidebar {
+  flex: 0 0 20%;
+  max-width: 300px;
+}
+
+.profile__clothing {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+@media (max-width: 900px) {
+  .profile {
+    gap: 32px;
+  }
+}
+
+@media (max-width: 768px) {
+  .profile {
+    flex-direction: column;
+    gap: 24px;
+    padding-top: 24px;
+  }
+  .profile__sidebar,
+  .profile__clothing,
+  .profile__sidebar--one-fifth,
+  .profile__sidebar--one-quarter {
+    flex: 0 0 auto;
+    max-width: none;
+    width: 100%;
+  }
+  .sidebar__avatar {
+    width: 72px;
+    height: 72px;
+  }
+  .sidebar__username {
+    font-size: 20px;
+  }
+}
