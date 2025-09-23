@@ -1,17 +1,24 @@
 import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+
 import logo from "../../assets/images/logo.svg";
 import avatar from "../../assets/images/avatar.svg";
 import hamburgerIcon from "../../assets/images/hamburger.svg";
 import closeIcon from "../../assets/images/close-icon.svg";
 import "./Header.css";
-import "../ToggleSwitch/ToggleSwitch";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 
 function Header({ handleAddClick, weatherData }) {
   const [isMobileMenuOpened, setIsMobileMenuOpened] = useState(false);
+  const navigate = useNavigate();
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpened((prev) => !prev);
+  };
+
+  const handleNavigateCloseMenu = (path) => {
+    navigate(path);
+    setIsMobileMenuOpened(false);
   };
 
   const currentDate = new Date().toLocaleString("default", {
@@ -22,7 +29,14 @@ function Header({ handleAddClick, weatherData }) {
   return (
     <header className="header">
       <div className="header__content">
-        <img className="header__logo" src={logo} alt="What to Wear Logo" />
+        <Link
+          to="/"
+          className="header__logo-link"
+          aria-label="Go to home"
+          onClick={() => setIsMobileMenuOpened(false)}
+        >
+          <img className="header__logo" src={logo} alt="What to Wear Logo" />
+        </Link>
         <p className="header__geo-data">
           {currentDate}, {weatherData.city}
         </p>
@@ -50,15 +64,30 @@ function Header({ handleAddClick, weatherData }) {
         <ToggleSwitch />
         <button
           type="button"
-          onClick={handleAddClick}
+          onClick={() => {
+            handleAddClick();
+            setIsMobileMenuOpened(false);
+          }}
           className="header__clothes-btn"
         >
           + Add Clothes
         </button>
-        <div className="header__user-content">
-          <p className="header__username">Username Nameduser</p>
-          <img src={avatar} alt="User Avatar" className="header__user-avatar" />
-        </div>
+
+        <button
+          type="button"
+          className="header__user-content-btn"
+          onClick={() => handleNavigateCloseMenu("/profile")}
+          aria-label="Go to profile"
+        >
+          <div className="header__user-content">
+            <p className="header__username">Username Nameduser</p>
+            <img
+              src={avatar}
+              alt="User Avatar"
+              className="header__user-avatar"
+            />
+          </div>
+        </button>
       </nav>
     </header>
   );
