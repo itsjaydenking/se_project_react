@@ -13,7 +13,7 @@ import DeleteConfirmationModal from "../DeleteConfirmationModal/DeleteConfirmati
 
 import { getWeather, filterWeatherData } from "../../utils/weatherApi.js";
 import CurrentTemperatureUnitContext from "../../context/CurrentTemperatureUnitContext.jsx";
-import { getItems } from "../../utils/api.js";
+import { getItems, addItem, deleteItem } from "../../utils/api";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -64,11 +64,17 @@ function App() {
   };
 
   const handleCardDelete = () => {
-    setClothingItems((prev) =>
-      prev.filter((item) => item._id !== cardToDelete._id)
-    );
-    setCardToDelete(null);
-    setActiveModal("");
+    if (!cardToDelete) return;
+    const id = cardToDelete._id;
+    deleteItem(id)
+      .then(() => {
+        setClothingItems((prev) =>
+          prev.filter((item) => (item._id ?? item.id) !== id)
+        );
+        setCardToDelete(null);
+        setActiveModal("");
+      })
+      .catch((err) => console.error("Delete failed:", err));
   };
 
   const closeActiveModal = () => {
@@ -76,16 +82,17 @@ function App() {
     setCardToDelete(null);
   };
 
-  const handleAddGarment = (evt, newGarment) => {
+  const handleAddGarment = (evt, formValues) => {
     evt.preventDefault();
-
-    const garmentWithId = {
-      ...newGarment,
-      _id: Date.now() + Math.random(),
-    };
-    setClothingItems((prevItems) =>
-      [...prevItems, garmentWithId].sort((a, b) => a.name.localeCompare(b.name))
-    );
+    addItem(formValues)
+      .then((created) =>
+        setClothingItems((prev) =>
+          [...prev, created].sort((a, b) =>
+            (a.name || "").localeCompare(b.name || "")
+          )
+        )
+      )
+      .catch(console.error);
   };
 
   useEffect(() => {
