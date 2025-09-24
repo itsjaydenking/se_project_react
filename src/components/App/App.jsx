@@ -82,17 +82,17 @@ function App() {
     setCardToDelete(null);
   };
 
-  const handleAddGarment = (evt, formValues) => {
-    evt.preventDefault();
+  const handleAddGarment = (formValues) => {
     addItem(formValues)
-      .then((created) =>
+      .then((created) => {
         setClothingItems((prev) =>
           [...prev, created].sort((a, b) =>
             (a.name || "").localeCompare(b.name || "")
           )
-        )
-      )
-      .catch(console.error);
+        );
+        setActiveModal("");
+      })
+      .catch((err) => console.error("Add item failed:", err));
   };
 
   useEffect(() => {

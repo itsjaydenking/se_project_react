@@ -1,6 +1,6 @@
 const baseUrl = "http://localhost:3001";
 
-function handleResponse(res) {
+export function handleResponse(res) {
   return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
 }
 
@@ -24,5 +24,5 @@ export function addItem({ name, weather, link, imageUrl }) {
 export function deleteItem(id) {
   return fetch(`${baseUrl}/items/${id}`, {
     method: "DELETE",
-  }).then((res) => (res.ok ? id : Promise.reject(`Error: ${res.status}`)));
+  }).then(handleResponse);
 }
