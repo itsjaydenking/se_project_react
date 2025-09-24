@@ -175,4 +175,22 @@
   .header__user-avatar {
     padding: 0;
   }
+
+  .header.header_profile {
+    flex-direction: column;
+  }
+  .header.header_profile .header__content {
+    flex-direction: row;
+    align-items: center;
+    gap: 6px;
+  }
+  .header.header_profile .header__logo {
+    margin: 0;
+    width: 89px;
+  }
+  .header.header_profile .header__geo-data {
+    padding-top: 0;
+    font-size: 16px;
+    line-height: 20px;
+  }
 }
