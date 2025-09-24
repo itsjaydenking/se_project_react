@@ -43,15 +43,14 @@
 
 @media (max-width: 480px) {
   .clothes-section__header {
-    padding-bottom: 20px;
+    padding-bottom: 16px;
     justify-content: space-between;
   }
   .clothes-section__title {
     line-height: 20px;
   }
   .clothes-section__list {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: auto auto;
     column-gap: 15px;
     row-gap: 16px;
   }

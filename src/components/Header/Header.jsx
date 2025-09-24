@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 
 import logo from "../../assets/images/logo.svg";
 import avatar from "../../assets/images/avatar.svg";
@@ -11,6 +11,8 @@ import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 function Header({ handleAddClick, weatherData }) {
   const [isMobileMenuOpened, setIsMobileMenuOpened] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation();
+  const isProfile = location.pathname.startsWith("/profile");
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpened((prev) => !prev);
@@ -27,8 +29,12 @@ function Header({ handleAddClick, weatherData }) {
   });
 
   return (
-    <header className="header">
-      <div className="header__content">
+    <header className={`header${isProfile ? " header_profile" : ""}`}>
+      <div
+        className={`header__content${
+          isProfile ? " header__content_profile" : ""
+        }`}
+      >
         <Link
           to="/"
           className="header__logo-link"
