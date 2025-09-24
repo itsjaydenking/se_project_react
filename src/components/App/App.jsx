@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 
 import "./App.css";
-import { defaultClothingItems, API_KEY } from "../../utils/constants.js";
+import { API_KEY } from "../../utils/constants.js";
 import Header from "../Header/Header.jsx";
 import Main from "../Main/Main.jsx";
 import Footer from "../Footer/Footer.jsx";
@@ -13,6 +13,7 @@ import DeleteConfirmationModal from "../DeleteConfirmationModal/DeleteConfirmati
 
 import { getWeather, filterWeatherData } from "../../utils/weatherApi.js";
 import CurrentTemperatureUnitContext from "../../context/CurrentTemperatureUnitContext.jsx";
+import { getItems } from "../../utils/api.js";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -27,9 +28,22 @@ function App() {
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
   const [selectedWeather, setSelectedWeather] = useState("");
-  const [clothingItems, setClothingItems] = useState(defaultClothingItems);
+  const [clothingItems, setClothingItems] = useState([]);
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
   const [cardToDelete, setCardToDelete] = useState(null);
+
+  useEffect(() => {
+    getItems()
+      .then((data) => {
+        const items = Array.isArray(data) ? data : [];
+        setClothingItems(
+          [...items].sort((a, b) => (a.name || "").localeCompare(b.name || ""))
+        );
+      })
+      .catch((err) => {
+        console.error("Failed to load items:", err);
+      });
+  }, []);
 
   const handleToggleSwitchChange = () => {
     setCurrentTemperatureUnit(currentTemperatureUnit === "F" ? "C" : "F");
@@ -62,14 +76,8 @@ function App() {
     setCardToDelete(null);
   };
 
-  // TODO: replace with backend call
-  // add _id to new garment
-  // sort clothing items alphabetically by name
   const handleAddGarment = (evt, newGarment) => {
     evt.preventDefault();
-    //call the fetch function
-    //.then()... all the stuff
-    //The ID will be included in the response from the backend
 
     const garmentWithId = {
       ...newGarment,
@@ -78,7 +86,6 @@ function App() {
     setClothingItems((prevItems) =>
       [...prevItems, garmentWithId].sort((a, b) => a.name.localeCompare(b.name))
     );
-    //.catch()
   };
 
   useEffect(() => {
