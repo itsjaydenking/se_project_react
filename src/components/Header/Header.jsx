@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link, useNavigate, useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 import logo from "../../assets/images/logo.svg";
 import avatar from "../../assets/images/avatar.svg";
@@ -10,17 +10,11 @@ import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 
 function Header({ handleAddClick, weatherData }) {
   const [isMobileMenuOpened, setIsMobileMenuOpened] = useState(false);
-  const navigate = useNavigate();
   const location = useLocation();
   const isProfile = location.pathname.startsWith("/profile");
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpened((prev) => !prev);
-  };
-
-  const handleNavigateCloseMenu = (path) => {
-    navigate(path);
-    setIsMobileMenuOpened(false);
   };
 
   const currentDate = new Date().toLocaleString("default", {
@@ -79,11 +73,11 @@ function Header({ handleAddClick, weatherData }) {
           + Add Clothes
         </button>
 
-        <button
-          type="button"
-          className="header__user-content-btn"
-          onClick={() => handleNavigateCloseMenu("/profile")}
+        <Link
+          to="/profile"
+          className="header__user-content-link"
           aria-label="Go to profile"
+          onClick={() => setIsMobileMenuOpened(false)}
         >
           <div className="header__user-content">
             <p className="header__username">Username Nameduser</p>
@@ -93,7 +87,7 @@ function Header({ handleAddClick, weatherData }) {
               className="header__user-avatar"
             />
           </div>
-        </button>
+        </Link>
       </nav>
     </header>
   );
