@@ -83,13 +83,10 @@ function App() {
   };
 
   const handleAddGarment = (formValues) => {
+    if (!formValues || typeof formValues !== "object") return;
     addItem(formValues)
       .then((created) => {
-        setClothingItems((prev) =>
-          [...prev, created].sort((a, b) =>
-            (a.name || "").localeCompare(b.name || "")
-          )
-        );
+        setClothingItems((prev) => [created, ...prev]);
         setActiveModal("");
       })
       .catch((err) => console.error("Add item failed:", err));

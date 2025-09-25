@@ -17,16 +17,9 @@ function ClothesSection({
         </button>
       </div>
       <ul className="clothes-section__list">
-        {clothingItems
-          .slice()
-          .sort((a, b) => a.name.localeCompare(b.name))
-          .map((item) => (
-            <ItemCard
-              key={item._id}
-              item={item}
-              onCardClick={handleCardClick}
-            />
-          ))}
+        {clothingItems.map((item) => (
+          <ItemCard key={item._id} item={item} onCardClick={handleCardClick} />
+        ))}
       </ul>
     </div>
   );

@@ -10,24 +10,32 @@ const AddItemModal = ({
   selectedWeather,
   setSelectedWeather,
 }) => {
-  const defaultValues = {
+  const { values, handleChange, setValues } = useForm({
     name: "",
     link: "",
     weather: selectedWeather || "",
-  };
+  });
 
-  const { values, handleChange, setValues } = useForm(defaultValues);
+  useEffect(() => {
+    if (isOpen) {
+      setValues({
+        name: "",
+        link: "",
+        weather: selectedWeather || "",
+      });
+    }
+  }, [isOpen, setValues]);
 
   function handleSubmit(evt) {
     evt.preventDefault();
-    onAddItem(evt, values);
-    setValues(defaultValues);
-    onCloseModal();
+    onAddItem(values);
   }
 
   const handleRadioChange = (evt) => {
-    handleChange(evt);
-    setSelectedWeather(evt.target.value);
+    const { value } = evt.target;
+    setSelectedWeather(value);
+    // Update just weather without wiping other fields
+    setValues((prev) => ({ ...prev, weather: value }));
   };
 
   return (
@@ -39,7 +47,7 @@ const AddItemModal = ({
       handleSubmit={handleSubmit}
     >
       <label className="modal__label" htmlFor="clothing-name">
-        Name{" "}
+        Name
       </label>
       <input
         className="modal__input modal__input_type_clothing-name"
@@ -54,8 +62,9 @@ const AddItemModal = ({
         onChange={handleChange}
       />
       <span className="modal__error" id="clothing-name-error"></span>
+
       <label className="modal__label" htmlFor="clothing-link">
-        Image{" "}
+        Image
       </label>
       <input
         className="modal__input modal__input_type_clothing-link"
@@ -68,6 +77,7 @@ const AddItemModal = ({
         onChange={handleChange}
       />
       <span className="modal__error" id="clothing-link-error"></span>
+
       <fieldset className="modal__radio-buttons">
         <legend className="modal__legend">Select the weather type:</legend>
         {["hot", "warm", "cold"].map((type) => (
