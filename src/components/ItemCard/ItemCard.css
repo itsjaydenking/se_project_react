@@ -29,6 +29,31 @@
   cursor: pointer;
 }
 
+.card__like-button {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: transparent;
+  border: none;
+  padding: 0;
+  display: flex;
+  cursor: pointer;
+  opacity: 0.8;
+}
+
+.card__like-button:hover {
+  opacity: 1;
+}
+
+.card__like-button_hidden {
+  display: none;
+}
+
+.card__like-icon {
+  width: 20px;
+  height: 20px;
+}
+
 @media (max-width: 480px) {
   .card {
     width: 100vw;
@@ -43,5 +68,15 @@
 
   .card__image {
     max-height: 160px;
+  }
+
+  .card__like-button {
+    top: 8px;
+    right: 8px;
+  }
+
+  .card__like-icon {
+    width: 18px;
+    height: 18px;
   }
 }

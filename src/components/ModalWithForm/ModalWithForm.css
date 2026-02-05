@@ -10,14 +10,18 @@
   justify-content: center;
   visibility: hidden;
   opacity: 0;
-  transition: visibility 1s ease-in-out, opacity 1s ease-in-out;
+  transition:
+    visibility 1s ease-in-out,
+    opacity 1s ease-in-out;
   z-index: 3;
 }
 
 .modal_opened {
   visibility: visible;
   opacity: 1;
-  transition: visibility 1s ease-in-out, opacity 1s ease-in-out;
+  transition:
+    visibility 1s ease-in-out,
+    opacity 1s ease-in-out;
 }
 
 .modal__title {
@@ -75,8 +79,15 @@
   cursor: pointer;
 }
 
-.modal__submit {
+.modal__actions {
   margin-top: 32px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.modal__submit {
+  margin-top: 0;
   padding: 8px 16px;
   background-color: #000;
   color: #fff;
@@ -86,9 +97,17 @@
   font-size: 16px;
   line-height: 20px;
   font-weight: bold;
-  cursor: pointer;
   width: fit-content;
   border-radius: 4px;
+}
+
+.modal__error-text {
+  margin: 8px 0 12px;
+  font-family: "Cabinet Grotesk", sans-serif;
+  font-size: 14px;
+  line-height: 18px;
+  font-weight: 700;
+  color: #ff4d4f;
 }
 
 .modal__submit:hover {
@@ -98,6 +117,41 @@
 .modal__submit:disabled {
   background-color: rgba(0, 0, 0, 0.3);
   cursor: not-allowed;
+}
+
+.modal__alt {
+  margin-top: 0;
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.modal__alt-text {
+  font-family: "Cabinet Grotesk", sans-serif;
+  font-size: 14px;
+  line-height: 18px;
+  font-weight: bold;
+  margin: 0;
+  opacity: 0.6;
+}
+
+.modal__alt-button {
+  font-family: "Cabinet Grotesk", sans-serif;
+  font-size: 14px;
+  line-height: 18px;
+  font-weight: bold;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  color: #000;
+  opacity: 0.6;
+}
+
+.modal__alt-button:hover,
+.modal__alt-button:focus-visible {
+  opacity: 1;
+  text-decoration: underline;
 }
 
 @media (max-width: 480px) {
@@ -127,12 +181,26 @@
     box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.2);
     transform: translateY(100%);
     opacity: 0;
-    transition: transform 2s cubic-bezier(0.4, 0, 0.2, 1), opacity 1.5s; /* Ease */
+    transition:
+      transform 2s cubic-bezier(0.4, 0, 0.2, 1),
+      opacity 1.5s; /* Ease */
   }
 
   .modal_opened .modal__content_type_form {
     transform: translateY(0);
     opacity: 1;
-    transition: transform 2s cubic-bezier(0.4, 0, 0.2, 1), opacity 1.5s; /* Ease */
+    transition:
+      transform 2s cubic-bezier(0.4, 0, 0.2, 1),
+      opacity 1.5s; /* Ease */
+  }
+
+  .modal__actions {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .modal__alt {
+    justify-content: center;
   }
 }

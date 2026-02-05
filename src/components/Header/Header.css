@@ -58,7 +58,26 @@
 }
 
 .header__user-avatar {
-  padding-left: 4vw;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.header__avatar-placeholder {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #000;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Cabinet Grotesk", sans-serif;
+  font-size: 20px;
+  line-height: 24px;
+  font-weight: bold;
+  flex: 0 0 40px;
 }
 
 .header__menu-btn {
@@ -89,6 +108,28 @@
 .header__user-content-link:focus-visible {
   outline: 2px solid #000;
   border-radius: 4px;
+}
+
+.header__auth {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.header__auth-btn {
+  margin: 0;
+  font-family: "Cabinet Grotesk", sans-serif;
+  border: none;
+  font-size: 20px;
+  line-height: 24px;
+  font-weight: bold;
+  background-color: transparent;
+  cursor: pointer;
+  padding: 0;
+}
+
+.header__auth-btn:hover {
+  text-decoration: underline;
 }
 
 @media (max-width: 480px) {
@@ -155,7 +196,9 @@
     opacity: 0;
     pointer-events: none;
     transform: translateY(-8px);
-    transition: opacity 0.25s ease, transform 0.25s ease;
+    transition:
+      opacity 0.25s ease,
+      transform 0.25s ease;
   }
 
   .header__user-container_mobile-open {
@@ -168,27 +211,44 @@
     order: 1;
     padding-top: 60px;
   }
+
   .header__clothes-btn {
     order: 2;
     padding-bottom: 12px;
   }
 
-  .header__user-avatar {
-    padding: 0;
+  .header__auth {
+    order: 2;
+    padding-bottom: 12px;
+  }
+
+  .header__auth-btn {
+    font-size: 16px;
+    line-height: 20px;
+  }
+
+  .header__user-avatar,
+  .header__avatar-placeholder {
+    width: 32px;
+    height: 32px;
+    font-size: 16px;
   }
 
   .header.header_profile {
     flex-direction: column;
   }
+
   .header.header_profile .header__content {
     flex-direction: row;
     align-items: center;
     gap: 6px;
   }
+
   .header.header_profile .header__logo {
     margin: 0;
     width: 89px;
   }
+
   .header.header_profile .header__geo-data {
     padding-top: 0;
     font-size: 16px;
