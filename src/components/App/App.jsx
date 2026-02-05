@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 
 import "./App.css";
 import { API_KEY } from "../../utils/constants.js";
@@ -46,6 +46,8 @@ function App() {
   const [clothingItems, setClothingItems] = useState([]);
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
   const [cardToDelete, setCardToDelete] = useState(null);
+
+  const navigate = useNavigate();
 
   const [currentUser, setCurrentUser] = useState({
     _id: "",
@@ -162,6 +164,7 @@ function App() {
       .then((user) => {
         setCurrentUser(user);
         closeActiveModal();
+        navigate("/");
       })
       .catch((err) => {
         console.error("Signin failed:", err);
@@ -283,6 +286,8 @@ function App() {
                       handleAddClick={handleAddClick}
                       onEditProfile={openEditProfileModal}
                       onLogout={handleLogout}
+                      isLoggedIn={isLoggedIn}
+                      onCardLike={handleCardLike}
                     />
                   </ProtectedRoute>
                 }
