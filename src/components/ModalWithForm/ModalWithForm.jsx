@@ -1,30 +1,39 @@
-import closeButton from "../../assets/images/close-icon.svg";
 import "./ModalWithForm.css";
+import closeIcon from "../../assets/images/close-icon.svg";
 
 function ModalWithForm({
-  children,
-  buttonText,
   title,
+  buttonText,
   isOpen,
   closeActiveModal,
   handleSubmit,
+  children,
+  footer,
 }) {
   return (
-    <div className={`modal modal_type_form${isOpen ? " modal_opened" : ""}`}>
+    <div className={`modal ${isOpen ? "modal_opened" : ""}`}>
       <div className="modal__content modal__content_type_form">
-        <h2 className="modal__title">{title}</h2>
         <button
-          className="modal__close"
           type="button"
+          className="modal__close"
           onClick={closeActiveModal}
+          aria-label="Close modal"
         >
-          <img src={closeButton} alt="Close" />
+          <img src={closeIcon} alt="Close" />
         </button>
-        <form onSubmit={handleSubmit} className="modal__form">
+
+        <h2 className="modal__title">{title}</h2>
+
+        <form className="modal__form" onSubmit={handleSubmit}>
           {children}
-          <button className="modal__submit" type="submit">
-            {buttonText}
-          </button>
+
+          <div className="modal__actions">
+            <button type="submit" className="modal__submit">
+              {buttonText}
+            </button>
+
+            {footer}
+          </div>
         </form>
       </div>
     </div>
