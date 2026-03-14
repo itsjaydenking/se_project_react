@@ -1,4 +1,7 @@
-const baseUrl = "http://localhost:3001";
+const baseUrl =
+  process.env.NODE_ENV === "production"
+    ? "https://api.royalcloset.serverpit.com"
+    : "http://localhost:3001";
 
 export function handleResponse(res) {
   return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);

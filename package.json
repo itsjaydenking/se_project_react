@@ -2,7 +2,7 @@
   "name": "se_project_react",
   "private": true,
   "version": "0.1.0",
-  "homepage": "https://itsjaydenking.github.io/se_project_react/",
+  "homepage": "https://royalcloset.serverpit.com",
   "type": "module",
   "scripts": {
     "dev": "vite --open",
