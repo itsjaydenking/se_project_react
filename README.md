@@ -5,14 +5,18 @@
 ![Status](https://img.shields.io/badge/Status-In%20Development-yellow)
 ![License](https://img.shields.io/badge/License-MIT-green)
 
-WTWR (What to Wear?) is a responsive React web application that recommends clothing based on real-time weather conditions. The app uses geolocation and live weather data to help users decide what to wear each day.
+WTWR (What to Wear?) is a responsive full-stack web application that recommends clothing based on real-time weather conditions. The app uses geolocation and live weather data to help users decide what to wear each day.
 
-This project is developed as part of the TripleTen Software Engineering bootcamp and serves as a practical exploration of modern frontend development, component-driven architecture, and full-stack integration.
+The project demonstrates modern frontend architecture, API integration, authentication flows, and full-stack deployment on cloud infrastructure.
 
 ---
 
-## Backend Repository
+## Full Stack Repository Links
 
+Frontend:  
+https://github.com/itsjaydenking/se_project_react
+
+Backend API:  
 https://github.com/itsjaydenking/se_project_express
 
 ---
@@ -59,7 +63,15 @@ Features are continuously being added, refined, and refactored as part of ongoin
 
 ## Live Demo
 
-https://itsjaydenking.github.io/se_project_react/
+**Production Application**
+
+https://www.royalcloset.serverpit.com/
+
+This version connects to the deployed cloud backend API and represents the full production stack.
+
+**Backend API Endpoint**
+
+https://api.royalcloset.serverpit.com
 
 ---
 
@@ -72,7 +84,7 @@ https://itsjaydenking.github.io/se_project_react/
 ![JavaScript](https://img.shields.io/badge/JavaScript-ES6+-F7DF1E?logo=javascript&logoColor=black)
 ![CSS](https://img.shields.io/badge/CSS3-Styling-1572B6?logo=css3&logoColor=white)
 
-### Backend
+### Backend Services
 
 ![Node.js](https://img.shields.io/badge/Node.js-339933?logo=node.js&logoColor=white)
 ![Express](https://img.shields.io/badge/Express.js-Backend-000000?logo=express&logoColor=white)
@@ -85,7 +97,39 @@ https://itsjaydenking.github.io/se_project_react/
 
 ### Deployment
 
-![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-Deployment-222222?logo=githubpages&logoColor=white)
+![Google Cloud](https://img.shields.io/badge/Google%20Cloud-Compute%20Engine-4285F4?logo=googlecloud&logoColor=white)
+![Nginx](https://img.shields.io/badge/Nginx-Reverse%20Proxy-009639?logo=nginx&logoColor=white)
+![PM2](https://img.shields.io/badge/PM2-Process%20Manager-2B037A)
+
+The application is deployed on a **Google Cloud Compute Engine virtual machine** with:
+
+- **Nginx** as a reverse proxy
+- **PM2** for Node.js process management
+- **MongoDB Atlas** for the cloud database
+
+---
+
+## Architecture Overview
+
+The WTWR application follows a full-stack architecture:
+
+Frontend:
+
+- React single-page application built with Vite
+
+Backend:
+
+- Node.js and Express REST API
+- JWT authentication
+- MongoDB Atlas database
+
+Infrastructure:
+
+- Google Cloud Compute Engine virtual machine
+- Nginx reverse proxy
+- PM2 process manager
+
+The frontend communicates with the backend API to retrieve weather data, manage user authentication, and perform CRUD operations for clothing items.
 
 ---
 
@@ -112,6 +156,16 @@ Through this project, I focused on:
 - Deploying a production-ready application
 
 The codebase is actively refactored to improve clarity, maintainability, and performance as new concepts are introduced.
+
+## Key Concepts Demonstrated
+
+- Component-driven React architecture
+- Custom React hooks and context for state management
+- Secure JWT authentication flows
+- RESTful API integration
+- Conditional rendering based on application state
+- Responsive UI design
+- Cloud deployment using Google Cloud infrastructure
 
 ---
 
